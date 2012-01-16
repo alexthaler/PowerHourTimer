@@ -1,0 +1,65 @@
+
+
+<html>
+<body>
+
+<link rel="stylesheet" type="text/css" href="css/button.css" />
+<link rel="stylesheet" type="text/css" href="css/blarg.css" />
+
+<div id="browserMessage" class="browser message">
+    <h3>This site is designed to be used by Chrome, Firefox or Safari.</h3>
+	<p>Some functionality might not work correctly when using other browsers.</p>
+</div>	
+
+<h1 id="title" class="title"> PowerHourTimer.com </h1>
+
+<div id="countdown">0</div> </br>
+<div id="currdrink">  </div>
+<div id="drinkbreakdown"></div>
+<div id="drinkbreakdownoz"></div>
+<div id="drinkbreakdownbeers"></div>
+
+<div id="audiotags">
+	<audio id="audio1" src="sounds/myDrink.wav" > Your browser does not support the audio element. Please use Firefox, Chrome or Safari to view this site. </audio>
+	<audio id="audio2" src="sounds/goodDrink.wav" > </audio>
+</div>
+
+<div id="usercontent">
+
+<form name="soundForm">
+
+		<label for="numdrink">How many drinks?<label></br>
+		<input type="text" id="numdrink" placeholder="60" type="number" autofocus required>
+
+<br/><br/>
+Please choose your alert sound:
+<br/>
+		<label for="holydrink" onclick="EvalSound('audio2')"> Holy Drink </label>
+		<input type="radio" id="holydrink" name="audio" value="audio2" checked /> 
+
+		<label for="dumbdrink" onclick="EvalSound('audio1')"> Dumb Drink </label>
+		<input type="radio" id="dumbdrink" name="audio" value="audio1" /> 
+
+</form>
+
+<br/><br/>
+
+<div id="buttonz">
+	<button id="startPartyButton" class="button play" type="button" onclick="startParty()">Start Party</button> 
+	<button id="stopPartyButton" class="button delete" type="button" disabled="true" onclick="stopParty()">Stop Party</button>
+</div>
+<br/>
+
+<div id="hack" onclick="incrementCounter(true)">Please </div>remember to play responsibly, keep an eye on your friends to make sure everyone is okay while/after playing.
+
+<address>
+<a href="mailto:powerhourtimer@gmail.com">Questions comments bugs?  Contact us at powerhourtimer@gmail.com</a><br />
+</address>
+
+</div>
+
+</body>
+</html>
+
+<script src='javascript/jquery-1.7.1.min.js'> </script>
+<script src='javascript/stuff.js'> </script>
