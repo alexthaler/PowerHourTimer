@@ -12,6 +12,10 @@ a{
 	color:white;
 }
 
+.container {
+	background-color:white;
+}
+
 #drinkTitle{
 	text-align:center;
 }
