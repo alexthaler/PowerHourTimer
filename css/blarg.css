@@ -1,15 +1,22 @@
-body{
+a:link {color:#FFFFFF;}
+a:visited {color:#FFFFFF;}
+a:hover {color:#FFFFFF;}  
+a:active {color:#FFFFFF;} 
+
+.night{
 	font-family:Helvetica,Calibri,Arial,sans-serif;
 	background-color:#141414;
 	color:white;
 }
 
-h1{
-	text-align:center;
+.day{
+    font-family:Helvetica,Calibri,Arial,sans-serif;
+    background-color:white;
+    color:black;
 }
 
-a{
-	color:white;
+h1{
+	text-align:center;
 }
 
 .container {
@@ -59,22 +66,22 @@ a{
 	border: 1px solid;
 	color: #fff;
 	padding: 15px;
-	position: fixed;
-	visibility: hidden;
+    position: fixed;
+    visibility: hidden;
 }
 
 .browser
 {
-     background-color: #eaaf51;
-     border-color: #d99a36;
+    background-color: #eaaf51;
+    border-color: #d99a36;
 }
 
 .message h3
 {
-                 margin: 0 0 5px 0;
+    margin: 0 0 5px 0;
 }
 
 .message p
 {
-                 margin: 0;
+    margin: 0;
 }

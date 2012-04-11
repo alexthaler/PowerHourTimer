@@ -4,6 +4,7 @@ var toCount = 0;
 var t;
 var currdrinks = 0;
 var selectedSound;
+var night = true;
 
 function incrementCounter(isHack){
 	if(secCounter == 60){
@@ -11,7 +12,6 @@ function incrementCounter(isHack){
 		currdrinks = currdrinks + 1;
 		document.getElementById("drinkbreakdown").innerHTML = currdrinks + ' of ' + toCount;
 		document.getElementById("drinkbreakdownoz").innerHTML = currdrinks * 1.5 + ' of ' + toCount * 1.5 + ' fl. oz.';
-		//document.getElementById("drinkbreakdownbeers").innerHTML = currdrinks / 8 + ' of ' + toCount / 8 + ' beers';
 		selectedSound = getCheckedValue(document.forms['soundForm'].elements['audio']);
 		
 		EvalSound(selectedSound);	
@@ -36,7 +36,6 @@ function startParty(){
 		document.getElementById("currdrink").innerHTML = 'Current Drink:';
 		document.getElementById("drinkbreakdown").innerHTML = currdrinks + ' of ' + toCount;
 		document.getElementById("drinkbreakdownoz").innerHTML = currdrinks * 1.5 + ' of ' + toCount * 1.5 + ' fl. oz.';
-		//document.getElementById("drinkbreakdownbeers").innerHTML = currdrinks / 8 + ' of ' + toCount / 8 + ' beers';
 		document.getElementById("startPartyButton").disabled = true;
 		document.getElementById("stopPartyButton").disabled = false;
 		incrementCounter();
@@ -59,7 +58,6 @@ function resetValues(){
 	document.getElementById("currdrink").innerHTML = '';
 	document.getElementById("drinkbreakdown").innerHTML = '';
 	document.getElementById("drinkbreakdownoz").innerHTML = '';
-	document.getElementById("drinkbreakdownbeers").innerHTML = '';
 	document.getElementById("countdown").innerHTML = secCounter;
 }
 
@@ -83,6 +81,18 @@ function getCheckedValue(radioObj) {
 		}
 	}
 	return "";
+}
+
+function dayNight() {
+    if(night) {
+        night = false;
+        document.getElementById('emaillink').style.color = 'black';
+        document.body.className = 'day';
+    } else {
+        night = true;
+        document.getElementById('emaillink').style.color = 'white';
+        document.body.className = 'night';
+    }
 }
 
 if ($.browser.webkit) {
