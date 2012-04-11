@@ -85,7 +85,7 @@ function getCheckedValue(radioObj) {
 	return "";
 }
 
-if (!$.browser.webkit && !$.browser.msie) {
+if ($.browser.webkit) {
 	var browserStuff = document.getElementById("browserMessage");
 	browserStuff.style.visibility = "visible";
 }
