@@ -5,9 +5,11 @@ var t;
 var currdrinks = 0;
 var selectedSound;
 var night = true;
+var paused = false;
 
-function incrementCounter(isHack){
-	if(secCounter == 60){
+function incrementCounter(isHack) {
+
+	if(secCounter == 60) {
 		secCounter = 0;
 		currdrinks = currdrinks + 1;
 		document.getElementById("drinkbreakdown").innerHTML = currdrinks + ' of ' + toCount;
@@ -16,21 +18,28 @@ function incrementCounter(isHack){
 		
 		EvalSound(selectedSound);	
 	}
-	secCounter = secCounter + 1;
+
+    if(!paused) {
+	   secCounter = secCounter + 1;
+    }
+
 	document.getElementById("countdown").innerHTML = secCounter;
 
-	if(currdrinks < toCount){
-		if(!isHack){
+	if(currdrinks < toCount) {
+		if(!isHack) {
 			t=setTimeout("incrementCounter()", 1000);
 		}
 	} else {
 		document.getElementById("countdown").innerHTML = "Gratz!";
 	}
+
 }
 
 function startParty(){
 	toCount = document.getElementById("numdrink").value;
 	selectedSound = getCheckedValue(document.forms['soundForm'].elements['audio']);
+    document.getElementById("gamecontent").style.display = 'block'
+    document.getElementById("pregamecontent").style.display = 'none'
 
 	if(toCount && selectedSound){
 		document.getElementById("currdrink").innerHTML = 'Current Drink:';
@@ -45,6 +54,8 @@ function startParty(){
 }
 
 function stopParty(){
+    document.getElementById("gamecontent").style.display = 'none'
+    document.getElementById("pregamecontent").style.display = 'block'
 	clearTimeout(t);
 	document.getElementById("startPartyButton").disabled = false;
 	document.getElementById("stopPartyButton").disabled = true;
@@ -92,6 +103,18 @@ function dayNight() {
         night = true;
         document.getElementById('emaillink').style.color = 'white';
         document.body.className = 'night';
+    }
+}
+
+function togglePause() {
+    if(!paused) {
+        paused = !paused;
+        var pauseButton = document.getElementById("pauseButton");
+        pauseButton.innerHTML = "Resume"
+    } else {
+        paused = !paused;
+        var pauseButton = document.getElementById("pauseButton");
+        pauseButton.innerHTML = "Smoke Break"
     }
 }
 

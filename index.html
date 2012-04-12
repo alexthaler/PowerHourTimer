@@ -26,21 +26,26 @@
 
     <div id="usercontent">
 
-        <form name="soundForm">
-            <label for="numdrink">How many drinks?<label></br>
-            <input type="text" id="numdrink" value="60" type="number" autofocus>
-            <br/>
-            <br/>
-            Please choose your alert sound:
-            <br/>
-            <label for="holydrink" onclick="EvalSound('audio2')"> Holy Drink </label>
-            <input type="radio" id="holydrink" name="audio" value="audio2" checked /> 
+        <div id="gamecontent" style="display:none">
+            <button id="pauseButton" class="button" type="button" onclick="togglePause()">Smoke Break</button>
+        </div>
 
-            <label for="dumbdrink" onclick="EvalSound('audio1')"> Dumb Drink </label>
-            <input type="radio" id="dumbdrink" name="audio" value="audio1" /> 
-        </form>
+        <div id="pregamecontent">
+            <form name="soundForm">
+                <label for="numdrink">How many drinks?<label></br>
+                <input type="text" id="numdrink" value="60" type="number" autofocus>
+                <br/>
+                <br/>
+                Please choose your alert sound:
+                <br/>
+                <label for="holydrink" onclick="EvalSound('audio2')"> Holy Drink </label>
+                <input type="radio" id="holydrink" name="audio" value="audio2" checked /> 
 
-    <br/><br/>
+                <label for="dumbdrink" onclick="EvalSound('audio1')"> Dumb Drink </label>
+                <input type="radio" id="dumbdrink" name="audio" value="audio1" /> 
+            </form>
+        </div>
+
 
     <div id="buttonz">
         <button id="startPartyButton" class="button play" type="button" onclick="startParty()">Start Party</button> 
