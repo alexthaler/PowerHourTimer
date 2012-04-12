@@ -36,6 +36,12 @@ function incrementCounter(isHack) {
 }
 
 function startParty(){
+
+    var playStopButton = document.getElementById("playStopButton");
+    playStopButton.onclick = stopParty;
+    playStopButton.setAttribute("class", "button delete");
+    playStopButton.innerHTML = "Stop Party"
+
 	toCount = document.getElementById("numdrink").value;
 	selectedSound = getCheckedValue(document.forms['soundForm'].elements['audio']);
     document.getElementById("gamecontent").style.display = 'block'
@@ -45,8 +51,6 @@ function startParty(){
 		document.getElementById("currdrink").innerHTML = 'Current Drink:';
 		document.getElementById("drinkbreakdown").innerHTML = currdrinks + ' of ' + toCount;
 		document.getElementById("drinkbreakdownoz").innerHTML = currdrinks * 1.5 + ' of ' + toCount * 1.5 + ' fl. oz.';
-		document.getElementById("startPartyButton").disabled = true;
-		document.getElementById("stopPartyButton").disabled = false;
 		incrementCounter();
 	} else {
 		alert("Please enter the number of drinks you are playing and select an alert sound.");
@@ -54,11 +58,15 @@ function startParty(){
 }
 
 function stopParty(){
+
+    var playStopButton = document.getElementById("playStopButton");
+    playStopButton.onclick = startParty;
+    playStopButton.setAttribute("class", "button play");
+    playStopButton.innerHTML = "Start Party"
+
     document.getElementById("gamecontent").style.display = 'none'
     document.getElementById("pregamecontent").style.display = 'block'
 	clearTimeout(t);
-	document.getElementById("startPartyButton").disabled = false;
-	document.getElementById("stopPartyButton").disabled = true;
 	resetValues();
 }
 
