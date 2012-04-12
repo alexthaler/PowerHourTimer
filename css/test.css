@@ -6,6 +6,14 @@
     word-wrap:break-word;
 }
 
+.control-label {
+    font-size:15px;
+}
+
+legend {
+    font-size:21px;
+}
+
 #pregameform {
     border-width: 1px;
 }
