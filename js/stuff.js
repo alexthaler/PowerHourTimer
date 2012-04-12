@@ -58,6 +58,7 @@ function startParty(){
 
 function stopParty(){
 
+    resetPauseButton();
     var playStopButton = document.getElementById("playStopButton");
     playStopButton.onclick = startParty;
     playStopButton.setAttribute("class", "button play");
@@ -111,6 +112,12 @@ function dayNight() {
         document.getElementById('emaillink').style.color = 'white';
         document.body.className = 'night';
     }
+}
+
+function resetPauseButton() {
+    paused = false;
+    var pauseButton = document.getElementById("pauseButton");
+    pauseButton.innerHTML = "Smoke Break"
 }
 
 function togglePause() {
