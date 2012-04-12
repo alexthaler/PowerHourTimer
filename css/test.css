@@ -1,0 +1,17 @@
+.night {
+    font-size:15px;
+}
+
+.span4 {
+    word-wrap:break-word;
+}
+
+#pregameform {
+    border-width: 1px;
+}
+
+#contTitle {
+    padding: 30px 0px 50px 0px;
+    text-align:center;
+    font-size:500%;
+}
