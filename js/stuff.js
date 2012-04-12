@@ -20,15 +20,14 @@ function incrementCounter(isHack) {
 	}
 
     if(!paused) {
-	   secCounter = secCounter + 1;
+        secCounter = secCounter + 1;
+        document.getElementById("countdown").innerHTML = secCounter;
     }
 
-	document.getElementById("countdown").innerHTML = secCounter;
-
 	if(currdrinks < toCount) {
-		if(!isHack) {
-			t=setTimeout("incrementCounter()", 1000);
-		}
+        if(!isHack) {
+            t = setTimeout("incrementCounter()", 1000);
+        }
 	} else {
 		document.getElementById("countdown").innerHTML = "Gratz!";
 	}
