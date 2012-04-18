@@ -1,12 +1,10 @@
 var numOnly = /^[0-9]*$/;
 var startDate = new Date();
+var numDrinksGoal = 0;
+var lastNumDrinksCompleted = 0;
 
 function playAudioTag(tagId) {
     document.getElementById(tagId).play();
-}
-
-function insertAfter(referenceNode, newNode) {
-    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
 function playSelectedAudio() {
@@ -16,14 +14,25 @@ function playSelectedAudio() {
 
 function startGame() {
     if(validateTextInput()) {
+        startDate = new Date();
+        numDrinksGoal = document.getElementById('numDrinksToPlay').value;
         document.getElementById('formdisplay').style.display = 'none';
         document.getElementById('gamedisplay').style.display = 'block';
+        syncTimer();
     }
 }
 
 function syncTimer() {
     var currDate = new Date()
-    document.getElementById('countDownSec').innerHTML = Math.round((currDate-startDate)/1000)%60;
+    var milliDifference = currDate-startDate;
+    var countDownSetValue = Math.round(milliDifference/1000)%60;
+    var numDrinksCompleted = Math.floor((milliDifference/1000)/60);
+    document.getElementById('countDownSec').innerHTML = countDownSetValue;
+    document.getElementById('numDrink').innerHTML = numDrinksCompleted + ' of ' + numDrinksGoal;
+    if(numDrinksCompleted != lastNumDrinksCompleted) {
+        playSelectedAudio();
+        lastNumDrinksCompleted = numDrinksCompleted;
+    }
     t = setTimeout("syncTimer()", 1000);
 }
 
