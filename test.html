@@ -1,7 +1,9 @@
 <script src='js/bootstrap.min.js'> </script>
-<script src='js/bootstrap-alert.min.js'> </script>
+<script src='js/bootstrap-alert.js'> </script>
+<script src='js/test.js'> </script>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Test-PowerHourTimer.com</title>
 </head>
@@ -12,35 +14,57 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/test.css"/>
 
+    <div id="audiotags">
+        <audio id="Dumb drink" src="sounds/myDrink.wav" > </audio>
+        <audio id="Holy drink" src="sounds/goodDrink.wav" > </audio>
+    </div>
+
     <div id="formcontainer" class="container">
         <div class="row">
             <div class="span12">
-                <div class="alert">
+                <div class="alert" style="display:none">
                     <strong>Warning!</strong> This site is designed to work on modern browsers, if you're using an old one (i.e. IE) some features might not work.
                 </div>
 
                 <h1 id="contTitle">PowerHourTimer.com</h1>
+            </div>
+        </div>
 
+        <div id="gamedisplay" class="row">
+            <div class="span12">
+                <div onclick="syncTimer()" id="countDownSec">0</div>
+                <div id="currentDrink">Current Drink:</div>
+                <div id="numDrink">0 of 100</div>
+                <div class="detailNums">
+                    <div id="numBeers">0 of 100 Beers</div>
+                    <div id="numOz">0 of 100 oz</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="formdisplay" class="row">
+            <div class="span12">    
                 <form class="form-horizontal" id="pregameform" >
                   <fieldset>
                     <legend>Please fill out the form below to start</legend>
-                    <div class="control-group">
-                      <label class="control-label" for="input01">How many drinks?</label>
+                    <div id="numDrinkGroup" class="control-group">
+                      <label class="control-label" for="numDrinksToPlay">How many drinks?</label>
                       <div class="controls">
-                        <input type="text" class="input-large" id="input01">
+                        <input id="numDrinksToPlay" type="text" onkeydown="validateTextInput()" class="input-large" >
                       </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="soundInput">Select sound</label>
                         <div class="controls">
-                            <select id="soundInput" onchange="alert('value was changed')">
+                            <select id="soundInput">
                                 <option>Holy drink</option>
                                 <option>Dumb drink</option>
                             </select>
+                            <span class="help-inline"><i onclick="playSelectedAudio()" class="icon-play"></i></span>
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button type="button" class="btn btn-primary">Start</button>
+                        <button type="button" class="btn btn-primary" onclick="startGame()">Start</button>
                     </div>
                   </fieldset>
                 </form>

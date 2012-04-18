@@ -10,8 +10,37 @@
     font-size:15px;
 }
 
+.detailNums {
+    font-size:1.4em;
+    line-height:1em;
+}
+
 legend {
     font-size:21px;
+}
+
+#gamedisplay {
+    display:none;
+    text-align:center;
+}
+
+#countDownSec {
+    line-height:.8em;
+    font-size:25em;
+    padding-bottom: .04em;
+}
+
+#currentDrink {
+    font-size:1.5em;
+}
+
+#numDrink {
+    font-size:3em;
+    line-height:1em;
+}
+
+#numDrinksToPlay {
+    height:2.2em;
 }
 
 #pregameform {
@@ -19,7 +48,7 @@ legend {
 }
 
 #contTitle {
-    padding: 30px 0px 50px 0px;
+    line-height:1.5;
     text-align:center;
-    font-size:500%;
+    font-size:4em;
 }
