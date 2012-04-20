@@ -5,6 +5,7 @@ var lastNumDrinksCompleted = 0;
 var numBeersGoal = 0;
 var numOzGoal = 0;
 var shotSize = 2.5;
+var silentMode = false;
 
 $(".collapse").collapse();
 $('.tabs').button();
@@ -32,12 +33,17 @@ function populateValues() {
     numDrinksGoal = document.getElementById('numDrinksToPlay').value;   
     numBeersGoal = Math.floor((numDrinksGoal*shotSize)/12);
     numOzGoal = Math.floor(numDrinksGoal*shotSize);
+    silentMode = document.getElementById('silentmodecheck').checked;
 }
 
 function syncTimer() {
     var currDate = new Date()
     var milliDifference = currDate-startDate;
-    var countDownSetValue = 60 - Math.round(milliDifference/1000)%60;
+    if(determineCountDirection() == 'Down') {
+        var countDownSetValue = 60 - Math.round(milliDifference/1000)%60;
+    } else {
+        var countDownSetValue = Math.round(milliDifference/1000)%60;
+    }
     var numDrinksCompleted = Math.floor((milliDifference/1000)/60);
     document.getElementById('countDownSec').innerHTML = countDownSetValue;
     document.getElementById('numDrink').innerHTML = numDrinksCompleted + ' of ' + numDrinksGoal;
@@ -45,7 +51,9 @@ function syncTimer() {
     document.getElementById('numOz').innerHTML = Math.floor(numDrinksCompleted*2.5) + ' of ' + numOzGoal + ' oz';
 
     if(numDrinksCompleted != lastNumDrinksCompleted) {
-        playSelectedAudio();
+        if(!silentMode){
+            playSelectedAudio();
+        }
         lastNumDrinksCompleted = numDrinksCompleted;
     }
     t = setTimeout("syncTimer()", 1000);
