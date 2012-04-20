@@ -1,5 +1,5 @@
+<script src='js/jquery-1.7.2.min.js'> </script>
 <script src='js/bootstrap.min.js'> </script>
-<script src='js/bootstrap-alert.js'> </script>
 <script src='js/test.js'> </script>
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
     <div id="formcontainer" class="container">
         <div class="row">
             <div class="span12">
-                <div class="alert" style="display:none">
+                <div class="alert" style="display:block">
                     <strong>Warning!</strong> This site is designed to work on modern browsers, if you're using an old one (i.e. IE) some features might not work.
                 </div>
 
@@ -39,6 +39,12 @@
                     <div id="numBeers">0 of 100 Beers</div>
                     <div id="numOz">0 of 100 oz</div>
                 </div>
+
+                <div id="gameButtons" class="btn-group">
+                    <button class="btn">Smoke Break</button>
+                    <button class="btn">No More!</button>
+                </div>
+
             </div>
         </div>
 
@@ -50,7 +56,7 @@
                     <div id="numDrinkGroup" class="control-group">
                       <label class="control-label" for="numDrinksToPlay">How many drinks?</label>
                       <div class="controls">
-                        <input id="numDrinksToPlay" type="text" onkeydown="validateTextInput()" class="input-large" >
+                        <input id="numDrinksToPlay" type="text" value="60" onkeydown="validateTextInput()" class="input-large" >
                       </div>
                     </div>
                     <div class="control-group">
@@ -61,6 +67,31 @@
                                 <option>Dumb drink</option>
                             </select>
                             <span class="help-inline"><i onclick="playSelectedAudio()" class="icon-play"></i></span>
+                        </div>
+                    </div>
+                    
+                    <a id="toggleLink" data-toggle="collapse" href="#demo" onclick="hideElement('toggleLink')">
+                        More Options
+                    </a>
+                     
+                    <div id="demo" class="collapse"> 
+                        <div class="control-group">
+                            <label class="control-label" for="countupdown">Count Up/Down</label>
+                            <div class="controls">
+                                <div class="btn-group" data-toggle="buttons-radio">
+                                    <button id="countdownbutton" type="button" class="btn active">Down</button>
+                                    <button id="countupbutton" type="button" class="btn">Up</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="silentmodecheck">Silent Mode</label>          
+                            <div class="controls">
+                                <label class="checkbox">
+                                    <input id="silentmodecheck" type="checkbox" onchange="alert(this.val)"  >
+                                    No audio alerts will be played
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="form-actions">

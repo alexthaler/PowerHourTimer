@@ -47,6 +47,10 @@ legend {
     border-width: 1px;
 }
 
+#gameButtons {
+    float:center;
+}
+
 #contTitle {
     line-height:1.5;
     text-align:center;
