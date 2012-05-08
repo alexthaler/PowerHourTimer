@@ -38,6 +38,7 @@ function stopGame() {
     showElement('formdisplay');
     stopped = true;
     pausedTimeMillis = 0;
+    lastNumDrinksCompleted = 0;
 }
 
 function populateValues() {
