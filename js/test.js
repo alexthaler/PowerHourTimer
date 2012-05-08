@@ -79,6 +79,11 @@ function syncTimer() {
 }
 
 function togglePause() {
+    if(paused) {
+        document.getElementById('pausebutton').innerHTML = 'Smoke Break';
+    } else {
+        document.getElementById('pausebutton').innerHTML = 'Resume';
+    }
     paused = !paused;
 }
 
