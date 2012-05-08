@@ -1,72 +1,151 @@
-<html>
+<script src='js/jquery-1.7.2.min.js'> </script>
+<script src='js/bootstrap.min.js'> </script>
+<script src='js/test.js'> </script>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>PowerHourTimer.com</title>
+    <title>PowerHourTimer.com</title>
 </head>
 
-<body id="page1" class="night">
-    <link rel="stylesheet" type="text/css" href="css/button.css" />
-    <link rel="stylesheet" type="text/css" href="css/blarg.css" />
+<body class="day">
 
-
-    <div id="browserMessage" class="browser message">
-        <h3>This site is designed to be used by Chrome, Firefox or Safari.</h3>
-	   <p>Some functionality might not work correctly when using other browsers.</p>
-    </div>	
-
-    <h1 id="title" class="title"> PowerHourTimer.com </h1>
-
-    <div id="countdown">0</div> </br>
-    <div id="currdrink">  </div>
-    <div id="drinkbreakdown"></div>
-    <div id="drinkbreakdownoz"></div>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/test.css"/>
 
     <div id="audiotags">
-    	<audio id="audio1" src="sounds/myDrink.wav" > </audio>
-    	<audio id="audio2" src="sounds/goodDrink.wav" > </audio>
+        <audio id="Dumb drink" src="sounds/myDrink.wav" > </audio>
+        <audio id="Holy drink" src="sounds/goodDrink.wav" > </audio>
     </div>
 
-    <div id="usercontent">
+    <div id="formcontainer" class="container">
+        <div class="row">
+            <div class="span12">
+                <div id="browserdisclaimer" class="alert" style="display:none">
+                    <strong>Warning!</strong> This site is designed to work on modern browsers, if you're using an old one (i.e. IE) some features might not work.
+                </div>
 
-        <div id="gamecontent" style="display:none">
-            <button id="pauseButton" class="button" type="button" onclick="togglePause()">Smoke Break</button>
+                <h1 id="contTitle">PowerHourTimer.com</h1>
+            </div>
         </div>
 
-        <div id="pregamecontent">
-            <form name="soundForm">
-                <label for="numdrink">How many drinks?<label></br>
-                <input type="text" id="numdrink" value="60" type="number" autofocus>
-                <br/>
-                <br/>
-                Please choose your alert sound:
-                <br/>
-                <label for="holydrink" onclick="EvalSound('audio2')"> Holy Drink </label>
-                <input type="radio" id="holydrink" name="audio" value="audio2" checked /> 
+        <div id="gamedisplay" class="row">
+            <div class="span12">
+                <div onclick="syncTimer()" id="countDownSec">0</div>
+                <div id="currentDrink">Current Drink:</div>
+                <div id="numDrink">0 of 100</div>
+                <div class="detailNums">
+                    <div id="numBeers">0 of 100 Beers</div>
+                    <div id="numOz">0 of 100 oz</div>
+                </div>
 
-                <label for="dumbdrink" onclick="EvalSound('audio1')"> Dumb Drink </label>
-                <input type="radio" id="dumbdrink" name="audio" value="audio1" /> 
-            </form>
+                <div id="gameButtons">
+                    <button class="btn" type="button" onclick="togglePause()">Smoke Break</button>
+                    <button class="btn" type="button" onclick="stopGame()">Stop.. I give up!</button>
+                </div>
+
+
+            </div>
         </div>
 
+        <div id="formdisplay" class="row">
+            <div class="span12">    
+                <form class="form-horizontal" id="pregameform" >
+                  <fieldset>
+                    <legend>Please fill out the form below to start</legend>
+                    <div id="numDrinkGroup" class="control-group">
+                      <label class="control-label" for="numDrinksToPlay">How Many?</label>
+                      <div class="controls">
+                        <input id="numDrinksToPlay" type="text" value="60" onkeydown="validateTextInput()" class="input-large" >
+                      </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="soundInput">Alert Sound</label>
+                        <div class="controls">
+                            <select id="soundInput">
+                                <option>Holy drink</option>
+                                <option>Dumb drink</option>
+                            </select>
+                            <span class="help-inline"><i onclick="playSelectedAudio()" class="icon-play"></i></span>
+                        </div>
+                    </div>
+                    
+                    <a id="toggleLink" data-toggle="collapse" href="#demo" onclick="hideElement('toggleLink')">
+                        More Options
+                    </a>
+                     
+                    <div id="demo" class="collapse"> 
+                        <div class="control-group">
+                            <label class="control-label" for="countupdown">Timer Direction</label>
+                            <div class="controls">
+                                <div class="btn-group" data-toggle="buttons-radio">
+                                    <button id="countdownbutton" type="button" class="btn active">Down</button>
+                                    <button id="countupbutton" type="button" class="btn">Up</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="silentmodecheck">Silent Mode</label>          
+                            <div class="controls">
+                                <label class="checkbox">
+                                    <input id="silentmodecheck" type="checkbox" >
+                                    No audio alerts will be played
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" onclick="startGame()">Start</button>
+                    </div>
+                  </fieldset>
+                </form>
 
-    <div id="buttonz">
-        <button id="playStopButton" class="button play" type="button" onclick="startParty()">Start Party</button> 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span4">
+                <h2>About</h2>
+                This site was created because I had to write a bash script to do the same thing for a party.  I then realized of course that it would be rather simple to do online and would be a fun side project.  
+                <br>
+                <br>
+                I try to work on the site quite a bit to keep my mind occupied (and off of work code) so if you have an idea for a cool feature either fork the git repo below and implement or send it to me and I'll see what I can do.
+                <br>
+                <br>
+                Thanks. 
+                <br>
+                <br>
+                -Alex
+            </div>
+            <div class="span4">
+                <h2>How to play?</h2>
+                The goal of the game is to drink a shot of your favorite beer (or preferably a light crappy one, don't waste good beer) a minute for x minutes.  The two most infamous goals are 60 (power hour) and 100 (the century).  
+                <br>
+                <ol>
+                    <li>Get lots of beer</li>
+                    <li>Fill out the form above (choose your goal)</li>
+                    <li>Turn up the volume (or choose silent mode if you wish</li>
+                    <li>Begin!</li>
+                    <li>The timer will count 60 second increments and signal you when to drink</li>
+                    <li>Go for as long as you can without vomiting</li>
+                </ol>
+            </div>
+            <div class="span4">
+                <h2>Disclaimer</h2>
+                <h3>Rule #1:  Don't be a MORON</h3>
+                This game entails a LOT of drinking and should only be played by:
+                <ol>
+                    <li>People who are of legal drinking age</li>
+                    <li>People who have friends/family around to ensure they end up okay.</li>
+                    <li>Seriously DO NOT play alone, it's a bad idea.</li>
+                    <li>People who will not be driving for a long time after the game is over.</li>
+                </ol>
+                <br>
+
+            </div>
+        </div>
     </div>
-    <br/>
-
-    <div id="hack" onclick="incrementCounter(true)  ">Please </div>remember to play responsibly, keep an eye on your friends to make sure everyone is okay while/after playing.
-
-    <address >
-    <a id="emaillink" href="mailto:powerhourtimer@gmail.com">Questions comments bugs?  Contact us at powerhourtimer@gmail.com</a><br />
-    </address>
-
-    <br>
-
-    <button type="button" id="dayNightButton" onclick="dayNight()">Day/Night</button>
-
-</div>
-
 </body>
-</html>
 
-<script src='js/jquery-1.7.1.min.js'> </script>
-<script src='js/stuff.js'> </script>
+</html>
