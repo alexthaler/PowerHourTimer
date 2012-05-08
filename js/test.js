@@ -69,11 +69,12 @@ function syncTimer() {
             }
             lastNumDrinksCompleted = numDrinksCompleted;
         }
+
     } else {
         pausedTimeMillis = pausedTimeMillis + 1000;
     }
 
-    if(!stopped) {
+    if(!stopped && numDrinksGoal != numDrinksCompleted) {
         t = setTimeout("syncTimer()", 1000);
     }
 }
