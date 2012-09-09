@@ -67,6 +67,8 @@ function syncTimer() {
         if(numDrinksCompleted != lastNumDrinksCompleted) {
             if(!silentMode){
                 playSelectedAudio();
+            } else {
+                displaySilentAlert();
             }
             lastNumDrinksCompleted = numDrinksCompleted;
         }
@@ -78,6 +80,13 @@ function syncTimer() {
     if(!stopped && numDrinksGoal != numDrinksCompleted) {
         t = setTimeout("syncTimer()", 1000);
     }
+}
+
+function displaySilentAlert() {
+    var alertElement = document.getElementById('silentAlert');
+    alertElement.style.opacity = 1;
+    showElement('silentAlert');
+    fadeElement('silentAlert', 5, 200);
 }
 
 function togglePause() {
@@ -118,6 +127,17 @@ function hideElement(el) {
 
 function showElement(el) {
     document.getElementById(el).style.display = 'block';
+}
+
+function fadeElement(el, ttime, interval) {
+    var element = document.getElementById(el);
+    element.style.opacity = element.style.opacity - 1/(ttime/(interval/1000));
+    if (element.style.opacity == 0 || element.style.opacity < 0 || element.style.opacity < .2) {
+        hideElement(el);
+        document.getElementById(el).style.opacity = 1;
+    } else {
+        t = setTimeout(function(){fadeElement(el, ttime, interval)}, interval);
+    }
 }
 
 function addLoadEvent(func) {

@@ -24,10 +24,21 @@ legend {
     text-align:center;
 }
 
+#silentAlert {
+    font-size: 26em;
+    color: red;
+    position: absolute;
+    padding-top: .35em;
+    opacity: 1;
+    display: none;
+    font-family: Helvetica;
+    font-weight: bold;
+}
+
 #countDownSec {
     line-height:.8em;
     font-size:25em;
-    padding-bottom: .04em;
+    padding:0,0,0,.04em;
 }
 
 #currentDrink {
@@ -37,6 +48,10 @@ legend {
 #numDrink {
     font-size:3em;
     line-height:1em;
+}
+
+#formcontainer {
+    position:relative;
 }
 
 #numDrinksToPlay {

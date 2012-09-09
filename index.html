@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/test.css"/>
+    <link rel="stylesheet" type="text/css" href="css/pht.css"/>
 
     <div id="audiotags">
         <audio id="Dumb drink" src="sounds/myDrink.wav" > </audio>
@@ -30,7 +30,12 @@
             </div>
         </div>
 
+        <div id="overlay" class="row">
+            <div id="silentAlert" class="span12">DRINK!</div>
+        </div>  
+
         <div id="gamedisplay" class="row">
+
             <div class="span12">
                 <div onclick="syncTimer()" id="countDownSec">0</div>
                 <div id="currentDrink">Current Drink:</div>
@@ -90,7 +95,7 @@
                             <div class="controls">
                                 <label class="checkbox">
                                     <input id="silentmodecheck" type="checkbox" >
-                                    No audio alerts will be played
+                                    No audio alerts, visual alert on screen
                                 </label>
                             </div>
                         </div>
@@ -125,7 +130,7 @@
                 <ol>
                     <li>Get lots of beer</li>
                     <li>Fill out the form above (choose your goal)</li>
-                    <li>Turn up the volume (or choose silent mode if you wish</li>
+                    <li>Turn up the volume (or choose silent mode if you wish)</li>
                     <li>Begin!</li>
                     <li>The timer will count 60 second increments and signal you when to drink</li>
                     <li>Go for as long as you can without vomiting</li>
