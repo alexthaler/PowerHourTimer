@@ -39,6 +39,7 @@ function stopGame() {
     stopped = true;
     pausedTimeMillis = 0;
     lastNumDrinksCompleted = 0;
+    clearTimeout(t);
 }
 
 function populateValues() {
@@ -119,6 +120,10 @@ function determineCountDirection() {
     } else {
         return 'Up';
     }
+}
+
+function debug() {
+    startDate = startDate-1000;
 }
 
 function hideElement(el) {

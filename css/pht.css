@@ -38,7 +38,7 @@ legend {
 #countDownSec {
     line-height:.8em;
     font-size:25em;
-    padding:0,0,0,.04em;
+    padding-bottom:.05em;
 }
 
 #currentDrink {
