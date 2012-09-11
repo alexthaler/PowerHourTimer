@@ -34,12 +34,12 @@ function startGame() {
 }
 
 function stopGame() {
+    clearTimeout(t);    
     hideElement('gamedisplay');
     showElement('formdisplay');
     stopped = true;
     pausedTimeMillis = 0;
     lastNumDrinksCompleted = 0;
-    clearTimeout(t);
 }
 
 function populateValues() {
