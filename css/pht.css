@@ -72,3 +72,16 @@ legend {
     text-align:center;
     font-size:4em;
 }
+
+#gplus {
+    float:left;
+}
+
+#facebook {
+    float:left;
+}
+
+#twitter {
+    float:left;
+    padding-top: .2em;
+}
