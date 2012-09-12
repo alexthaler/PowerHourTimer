@@ -19,7 +19,11 @@ function playAudioTag(tagId) {
 
 function playSelectedAudio() {
     var selectedAudio = document.getElementById('soundInput').value;
-    playAudioTag(selectedAudio);
+    if(selectedAudio == "Custom Sound") {
+        $.jRecorder.stop();
+    } else {
+        playAudioTag(selectedAudio);
+    }
 }
 
 function startGame() {
@@ -125,14 +129,6 @@ function determineCountDirection() {
 function debug() {
     startDate = startDate-1000;
 }
-
-$('#record').click(function(){
-    $.jRecorder.record(10);
-})
-
-$('#stop').click(function(){
-    $.jRecorder.stop();
-})
 
 function hideElement(el) {
     document.getElementById(el).style.display = 'none';
