@@ -38,8 +38,8 @@
     </script>
 
     <div id="audiotags">
-        <audio id="Dumb drink" src="sounds/myDrink.wav" > </audio>
-        <audio id="Holy drink" src="sounds/goodDrink.wav" > </audio>
+        <audio id="dd" src="sounds/myDrink.wav" > </audio>
+        <audio id="hd" src="sounds/goodDrink.wav" > </audio>
     </div>
 
     <div id="formcontainer" class="container">
@@ -92,9 +92,9 @@
                         <label class="control-label" for="soundInput">Alert Sound</label>
                         <div class="controls">
                             <select id="soundInput">
-                                <option>Holy drink</option>
-                                <option>Dumb drink</option>
-                                <option>Custom Sound</option>
+                                <option value="hd">Holy drink</option>
+                                <option value="dd">Dumb drink</option>
+                                <option value="cd">Custom drink</option>
                             </select>
                             <span class="help-inline"><i onclick="playSelectedAudio()" class="icon-play"></i></span>
                         </div>
@@ -224,11 +224,16 @@
 
 <script type="text/javascript">
     $('#record').click(function(){
-        $.jRecorder.record(10);
+        $.jRecorder.record(5);
+        hideElement('record');
+        showElement('stop');
     })
 
     $('#stop').click(function(){
         $.jRecorder.stop();
+        hideElement('stop');
+        showElement('record');
+        setSelectedAudioValue("cd");
     })
 
     function callback_finished(){

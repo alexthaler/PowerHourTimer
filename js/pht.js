@@ -19,7 +19,7 @@ function playAudioTag(tagId) {
 
 function playSelectedAudio() {
     var selectedAudio = document.getElementById('soundInput').value;
-    if(selectedAudio == "Custom Sound") {
+    if(selectedAudio == "cd") {
         $.jRecorder.stop();
     } else {
         playAudioTag(selectedAudio);
@@ -136,6 +136,10 @@ function hideElement(el) {
 
 function showElement(el) {
     document.getElementById(el).style.display = 'block';
+}
+
+function setSelectedAudioValue(value) {
+    document.getElementById('soundInput').value = value;
 }
 
 function fadeElement(el, ttime, interval) {
