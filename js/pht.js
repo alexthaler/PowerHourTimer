@@ -126,6 +126,14 @@ function debug() {
     startDate = startDate-1000;
 }
 
+$('#record').click(function(){
+    $.jRecorder.record(10);
+})
+
+$('#stop').click(function(){
+    $.jRecorder.stop();
+})
+
 function hideElement(el) {
     document.getElementById(el).style.display = 'none';
 }

@@ -1,6 +1,7 @@
 <script src='js/jquery-1.7.2.min.js'> </script>
 <script src='js/bootstrap.min.js'> </script>
 <script src='js/pht.js'> </script>
+<script src="js/jRecorder.js"> </script>
 <script type="text/javascript">
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -22,6 +23,19 @@
 </head>
 
 <body class="day">
+    <div id="locationforrecorder" style="border:1px solid grey"></div>
+
+    <script>
+       $.jRecorder({ 
+            host : 'http://localhost',  
+            callback_started_recording:     function(){callback_started(); },
+            callback_stopped_recording:     function(){callback_stopped(); },
+            callback_activityLevel:          function(level){callback_activityLevel(level); },
+            callback_activityTime:     function(time){callback_activityTime(time); },
+            swf_path : 'js/jRecorder.swf'
+         }, $('#locationforrecorder'));
+
+    </script>
 
     <div id="audiotags">
         <audio id="Dumb drink" src="sounds/myDrink.wav" > </audio>
@@ -85,11 +99,11 @@
                         </div>
                     </div>
                     
-                    <a id="toggleLink" data-toggle="collapse" href="#demo" onclick="hideElement('toggleLink')">
+                    <a id="moreOptionsLink" data-toggle="collapse" href="#moreOptions" onclick="hideElement('moreOptionsLink')">
                         More Options
                     </a>
                      
-                    <div id="demo" class="collapse"> 
+                    <div id="moreOptions" class="collapse"> 
                         <div class="control-group">
                             <label class="control-label" for="countupdown">Timer Direction</label>
                             <div class="controls">
@@ -107,6 +121,33 @@
                                     No audio alerts, visual alert on screen
                                 </label>
                             </div>
+                        </div>
+                    </div>
+
+                    <a id="recordAudioLink" data-toggle="collapse" href="#recordAudio" onclick="hideElement('recordAudioLink')">
+                        Record Your Own Alert
+                    </a>
+
+                    <div id="recordAudio" class="collapse"> 
+                        <div class="control-group" style="position:relative">
+                            <div style="float:left">
+                              Time: <span id="time">00:00</span>                        
+                            </div>
+
+                            <div style="float:left">
+                              Level: <span id="level"></span>
+                            </div>  
+
+                            <div id="levelbase" style="width:100px;height:20px;background-color:#ffff00;float:left">
+                              <div id="levelbar" style="height:19px; width:2px;background-color:red"></div>
+                            </div>
+
+                            <div style="float:left">
+                              Status: <span id="status"></status>
+                            </div> 
+
+                            <button type="button" class="btn btn-danger" id="record" >Record</button>
+                            <button type="button" class="btn btn-inverse" id="stop" >Stop</button>
                         </div>
                     </div>
 
@@ -178,5 +219,52 @@
         </div>
     </div>
 </body>
-
 </html>
+
+<script type="text/javascript">
+    $('#record').click(function(){
+        $.jRecorder.record(10);
+    })
+
+    $('#stop').click(function(){
+        $.jRecorder.stop();
+    })
+
+    function callback_finished(){
+        $('#status').html('Recording is finished');
+    }
+
+    function callback_started(){
+        $('#status').html('Recording is started');
+    }
+
+    function callback_error(code){
+        $('#status').html('Error, code:' + code);
+    }
+
+    function callback_stopped(){
+        $('#status').html('Stop request is accepted');
+    }
+
+    function callback_finished_recording(){
+        $('#status').html('Recording event is finished');
+    }
+
+    function callback_finished_sending(){
+        $('#status').html('File has been sent to server mentioned as host parameter');
+    }
+
+    function callback_activityLevel(level){
+        $('#level').html(level);
+
+        if(level == -1) {
+            $('#levelbar').css("width",  "2px");
+        } else {
+            $('#levelbar').css("width", (level * 2)+ "px");
+        }
+    }
+
+    function callback_activityTime(time){ 
+        $('#time').html(time);
+    }
+</script>
