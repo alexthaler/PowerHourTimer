@@ -96,12 +96,12 @@
                                 <option value="dd">Dumb drink</option>
                                 <option value="cd">Custom drink</option>
                             </select>
-                            <span class="help-inline"><i onclick="playSelectedAudio()" class="icon-play"></i></span>
+                            <span class="help-inline"><i onclick="playSelectedAudio()" class="icon-play-circle"></i></span>
                         </div>
                     </div>
                     
                     <a id="moreOptionsLink" data-toggle="collapse" href="#moreOptions" onclick="hideElement('moreOptionsLink')">
-                        More Options
+                        More Options/Record Custom Audio
                     </a>
                      
                     <div id="moreOptions" class="collapse"> 
@@ -123,32 +123,13 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
-
-                    <a id="recordAudioLink" data-toggle="collapse" href="#recordAudio" onclick="hideElement('recordAudioLink')">
-                        Record Your Own Alert
-                    </a>
-
-                    <div id="recordAudio" class="collapse"> 
-                        <div class="control-group" style="position:relative">
-                            <div style="float:left">
-                              Time: <span id="time">00:00</span>                        
+                        <div class="control-group">
+                            <label class="control-label" for="recordStuff">Custom Audio</label>
+                            <div class="controls">
+                                <button type="button" class="btn btn-danger" id="record" >Record</button>
+                                <button type="button" class="btn btn-inverse" id="stop" style="display:none">Stop</button>
+                                <img id="equalizergif" style="display:none" src="img/equalizer12.gif"/> 
                             </div>
-
-                            <div style="float:left">
-                              Level: <span id="level"></span>
-                            </div>  
-
-                            <div id="levelbase" style="width:100px;height:20px;background-color:#ffff00;float:left">
-                              <div id="levelbar" style="height:19px; width:2px;background-color:red"></div>
-                            </div>
-
-                            <div style="float:left">
-                              Status: <span id="status"></status>
-                            </div> 
-
-                            <button type="button" class="btn btn-danger" id="record" >Record</button>
-                            <button type="button" class="btn btn-inverse" id="stop" >Stop</button>
                         </div>
                     </div>
 
@@ -225,11 +206,13 @@
 <script type="text/javascript">
     $('#record').click(function(){
         $.jRecorder.record(5);
+        showElement('equalizergif');
         hideElement('record');
         showElement('stop');
     })
 
     $('#stop').click(function(){
+        hideElement('equalizergif');
         $.jRecorder.stop();
         hideElement('stop');
         showElement('record');
