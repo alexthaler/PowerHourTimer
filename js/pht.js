@@ -84,6 +84,8 @@ function syncTimer() {
 
     if(!stopped && numDrinksGoal != numDrinksCompleted) {
         t = setTimeout("syncTimer()", 1000);
+    } else {
+        document.getElementById('countDownSec').innerHTML = 'Gratz!';
     }
 }
 
