@@ -125,16 +125,15 @@
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="recordStuff">Custom Audio</label>
-                            <div class="controls">
-                                <button type="button" class="btn btn-danger" id="record" >Record</button>
-                                <button type="button" class="btn btn-inverse" id="stop" style="display:none">Stop</button>
-                                <img id="equalizergif" style="display:none" src="img/equalizer12.gif"/> 
+                            <div class="controls" style="position:relative">
+                                <button type="button" class="btn btn-danger" id="record" style="float:left">Record</button>
+                                <button type="button" class="btn btn-inverse" id="stop" style="display:none; float:left">Stop</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-actions">
-                        <button type="button" class="btn btn-primary" onclick="startGame()">Start</button>
+                        <button type="button" id="startbutton" class="btn btn-primary" onclick="startGame()">Start</button>
                     </div>
                   </fieldset>
                 </form>
@@ -206,17 +205,17 @@
 <script type="text/javascript">
     $('#record').click(function(){
         $.jRecorder.record(5);
-        showElement('equalizergif');
         hideElement('record');
         showElement('stop');
+        document.getElementById('stop').innerHTML = 'Stop';
     })
 
     $('#stop').click(function(){
-        hideElement('equalizergif');
         $.jRecorder.stop();
-        hideElement('stop');
         showElement('record');
         setSelectedAudioValue("cd");
+        document.getElementById('record').innerHTML = 'Re-Record';
+        document.getElementById('stop').innerHTML = 'Replay';
     })
 
     function callback_finished(){
