@@ -1,0 +1,8 @@
+{
+    "name": "pht-node",
+    "version": "0.0.1",
+    "dependencies" : {
+        "jake": "latest",
+        "uglify-js": "latest"       
+    }
+}
