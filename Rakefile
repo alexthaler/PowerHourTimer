@@ -1,3 +1,4 @@
+require 'yaml'
 require 'fileutils'
 require 'rake/clean'
 
@@ -21,11 +22,11 @@ end
 
 task :deploy => [:build,:clean_deploy] do 
 	yml = YAML::load(File.open('_build.yml'))
-	puts "deploying to @deploy_dir"
+	puts "deploying to #{@deploy_dir}"
 	FileUtils.rm_rf(@deploy_dir)
 	FileUtils.mkdir_p(@deploy_dir)
 	files = FileList.new().include('build/*')
-	cp_r files, yml['local_deploy_dir']
+	cp_r files, @deploy_dir
 end
 
 task :build do
